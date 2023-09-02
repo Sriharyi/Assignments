@@ -41,16 +41,19 @@ public class Fibonacci
 	// 	}
 	// }
 	public static void fiboseriesrecursive(long n){
-		System.out.print("0 ");
+		
+		fiborecur(new BigInteger("0"),new BigInteger("1"),n-2);
 		System.out.print("1 ");
-			fiborecur(new BigInteger("0"),new BigInteger("1"),n-2);
+		System.out.print("0 ");
      		}
      	public static void fiborecur(BigInteger n1,BigInteger n2,long n){
      		if(n>=0)
      		{
      			BigInteger n3 = n1.add(n2);	
-     			System.out.print(n3+" ");
+     			
      			fiborecur(n2,n3,n-1);
+     			
+     			System.out.print(n3+" ");
 		}
 	}
      		
