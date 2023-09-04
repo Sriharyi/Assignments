@@ -23,12 +23,12 @@ class Pattern{
             }
             System.out.println();
         }
-        input = input -1;
+        
         for(int i=input;i>=0;i--)
         {
             for(int j=0;j<i;j++)
             {
-                System.out.print("*");
+                System.out.print("-");
             }
             for(int j=i;j<mulinput-i;j++)
             {
@@ -36,7 +36,7 @@ class Pattern{
             }
             for(int j=mulinput-i;j<mulinput;j++)
             {
-                System.out.print("*");
+                System.out.print("-");
             }
             System.out.println();
         }
