@@ -5,7 +5,6 @@ class Pattern{
     {
         Scanner sc = new Scanner(System.in);
         Integer input = sc.nextInt();
-        System.out.print(input);
         Integer mulinput = input * 2;
         for(int i=0;i<=input;i++)
         {
@@ -40,5 +39,6 @@ class Pattern{
             }
             System.out.println();
         }
+        
     }
 }
