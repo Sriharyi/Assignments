@@ -5,8 +5,6 @@ public class Vehicle{
     {
         this("Unknown","Unknown");
         System.out.println("Constructor with no arguments");
-        // this.vehicleType = "Unknown";
-        // this.modeofTransport = "Unknown";
     }
     public Vehicle(String vehicleType,String modeofTransport)
     {
