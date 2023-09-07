@@ -15,6 +15,5 @@ class MyInterface implements InterfaceA.InterfaceB{
     {
         InterfaceA.InterfaceB b = new MyInterface();
         b.methodinB();
-
     }
 }
