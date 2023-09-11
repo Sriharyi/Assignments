@@ -11,17 +11,26 @@ import java.util.Set;
 
 
 public class BlackJackGame {
+    //here he have listofcards and playercardlist and dealercardlist to store their cards
     private List<StandardCard> listofCards = new ArrayList<>();
     private ArrayList<StandardCard> playerCardList = new ArrayList<>();
     private ArrayList<StandardCard> dealerCardList = new ArrayList<>();
+    //here we have playercardset and dealercardset to store their cards in a set to check contains cards in order of (1) time.
     private Set<StandardCard> playerCardSet = new HashSet<>();
     private Set<StandardCard> dealerCardSet = new HashSet<>();
+    //playersum and dealersum to store the value of total sum
     private Integer playerSum;
     private Integer dealerSum;
+    //deck is used to create a deck of cards
     private CardDeck deck; 
+    //scanner is used to get input from user
     private Scanner sc = new Scanner(System.in);
+    //random is used to generate value
     private Random r = new Random();
+    //track if the player and dealer is anyone busted
     private boolean skipped;
+
+    //method is used to initiate the game
     public void startGame() {
         System.out.println("\nWelcome to Sriharyi's blackjack program!\n");
         System.out.println("would you like to start the game yes/no?");
@@ -38,16 +47,22 @@ public class BlackJackGame {
             skipped = false;
             playerSum = 0;
             dealerSum = 0;
+            //clear the cards list for both everytime we play again
             playerCardList.clear();
             playerCardSet.clear();
             dealerCardList.clear();
             dealerCardSet.clear();
             deck = new CardDeck();
             listofCards = deck.generatecards();
+
+            //here we shuffle the deck
             Collections.shuffle(listofCards);
+
+            //start the game here
             initiatePlayer();
             initiateDealer();
-            
+
+            //variable used to store the first and second value of player and dealer
             String firstCard  = playerCardList.get(0).toString();
             String secondCard = playerCardList.get(1).toString();
             
@@ -60,7 +75,7 @@ public class BlackJackGame {
 
             System.out.println(" The dealer has a " + firstCard + " showing, and a hidden card.");
             System.out.println("His total is hidden, too.");
-
+            
             getPlayerChoose();
             if(skipped)
             {
@@ -92,6 +107,8 @@ public class BlackJackGame {
             input1  = sc.next();
         }   
     }
+
+    //player turn to hit OR Stay
     private void getPlayerChoose() {
         String input2;
         do {
@@ -121,6 +138,8 @@ public class BlackJackGame {
 
         } while (!input2.equals("stay"));
     }
+
+    //dealer turn to hit or stay
     private void getDealerchoose() {
         String dealerchoose;
         do {
@@ -150,16 +169,18 @@ public class BlackJackGame {
             System.out.println();
         } while (!dealerchoose.equals("stay"));
     }
+    //initiate the dealer
     private void initiateDealer() {
-        
         getDealerTurn();
         getDealerTurn();
     }
+    //initiate the player 
     private void initiatePlayer() {
        
         getPlayerTurn();
         getPlayerTurn();
     }
+    //method used to draw a random card from the listofcards for player turn
     private void getPlayerTurn() {
         boolean flag = true;
         do{
@@ -174,6 +195,7 @@ public class BlackJackGame {
             }
         }while(flag);
     }
+    //method used to draw a random card from the listofcards for dealer turn
     private void getDealerTurn() {
         boolean flag = true;
         do{  
@@ -188,6 +210,8 @@ public class BlackJackGame {
             }
         }while(flag);
     }
+
+    //method used to check the random card is already in dealers cards
     private boolean getIsNotDealerCard(Integer draw) {
         StandardCard temp = listofCards.get(draw);
         if(dealerCardSet.contains(temp))
@@ -196,6 +220,7 @@ public class BlackJackGame {
         }
         return true;
     }
+    // method used to check the random card is already in players cards
     private boolean getIsNotPlayerCard(Integer draw) {
         StandardCard temp = listofCards.get(draw);
         if(playerCardSet.contains(temp))
@@ -204,6 +229,7 @@ public class BlackJackGame {
         }
         return true;
     }
+    //method used to return random Integer with in the deckofcards
     private Integer randomDraw() {
         return r.nextInt(listofCards.size());
     }

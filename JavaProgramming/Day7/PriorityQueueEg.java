@@ -26,6 +26,7 @@ public class PriorityQueueEg{
         while (value.hasNext()) {
             System.out.println(value.next());
         }
+        
         System.out.println(pq.toString());
         pq.clear();
         System.out.println(pq.toString());
