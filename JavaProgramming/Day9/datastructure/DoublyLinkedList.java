@@ -1,18 +1,20 @@
 class Node{
     Integer data;
     Node next;
+    Node prev;
     Node(Integer data)
     {
         this.data =data;
         this.next = null;
+        this.prev = null;
     }
 }
 
-public class CircularLinkedList {
+public class DoublyLinkedList {
     private Node head;
     private Node tail;
     private Integer size;
-    CircularLinkedList()
+    DoublyLinkedList()
     {
         size = 0;
     }
@@ -28,9 +30,9 @@ public class CircularLinkedList {
             tail = n;
         }
         else{
+            head.prev = n;
             n.next = head;
             head = n;
-            tail.next = n;
         }
         size++;
     }
@@ -45,9 +47,9 @@ public class CircularLinkedList {
         }
         else
         {
+            n.prev = tail;
             tail.next = n;
             tail = n;
-            n.next = head;
         }
         size++;
     }
@@ -58,12 +60,8 @@ public class CircularLinkedList {
         if(head!=null)
         {
             temp = head.data;
-            // if(head == tail){
-            //      tail = null;
-            //      head = null;
-            // }
             head = head.next;
-            tail.next = head;
+            head.prev =null;
             size--;
         }
         return temp;
@@ -84,7 +82,6 @@ public class CircularLinkedList {
             temp = itr.data;
             prev.next =null;
             tail = prev;
-            tail.next =head;
             size--;
         }
         return temp;
@@ -130,17 +127,13 @@ public class CircularLinkedList {
         Node prevnode = null;
         Node currnode = head2;
         Node nextnode = null;
-        while(currnode!=tail)
+        while(currnode!=null)
         {
             nextnode = currnode.next;
             currnode.next = prevnode;
             prevnode = currnode;
             currnode = nextnode;
         }
-            nextnode = currnode.next;
-            currnode.next = prevnode;
-            prevnode = currnode;
-            currnode = nextnode;
         tail = head2;
         head2 = prevnode;
         return head2;
@@ -151,16 +144,19 @@ public class CircularLinkedList {
         if(head!=null)
         {
             Node itr = head;
-            while(itr!=tail) // or itr == tail
+            while(itr!=null) // or itr == tail
             {
                 System.out.print(itr.data+" ");
                 itr = itr.next;
             }
-            System.out.print(itr.data+" ");
             System.out.println();
         }
 
     }
 
+    // public void movetheelement()
+    // {
+
+    // }
 
 }

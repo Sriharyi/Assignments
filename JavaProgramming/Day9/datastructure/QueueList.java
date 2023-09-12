@@ -49,9 +49,9 @@
 
     public void reverse()
     {
-      front = recursiveReverse(front);
+      front = iterativeReverse(front);
     }
-    private Node recursiveReverse(Node front2) {
+    private Node iterativeReverse(Node front2) {
         Node prevnode = null;
         Node currnode = front2;
         Node nextnode = null;

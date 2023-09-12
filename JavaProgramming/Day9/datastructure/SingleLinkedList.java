@@ -116,9 +116,9 @@ public class SingleLinkedList {
 
     public void reverse()
     {
-      head = recursiveReverse(head);
+      head = iterativeReverse(head);
     }
-    private Node recursiveReverse(Node head2) {
+    private Node iterativeReverse(Node head2) {
         Node prevnode = null;
         Node currnode = head2;
         Node nextnode = null;

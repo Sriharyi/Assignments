@@ -54,10 +54,10 @@ public class Stack{
 
     public void reverse()
     {
-        vstack = recursiveReverse(vstack);
+        vstack = iterativeReverse(vstack);
     }
 
-    private StackNode recursiveReverse(StackNode vstack2) {
+    private StackNode iterativeReverse(StackNode vstack2) {
         StackNode prevnode = null;
         StackNode currnode = vstack2;
         StackNode nextnode = null;
