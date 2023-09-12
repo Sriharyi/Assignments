@@ -66,7 +66,11 @@ public class CardDeck{
     }
 }
 
-
+//here the list contains deck of cards which is usually 52 here 
+// how time the deck called it always used to generate 52 deck of cards
+// so here the space complexity will be constant
+//also the time complexity will be constant
+//or if we consider it as input size the tc will be o(n) and space complexity will be o(n);
 
 
 

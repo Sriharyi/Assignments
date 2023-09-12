@@ -35,6 +35,7 @@ public class BlackJackGame {
         System.out.println("\nWelcome to Sriharyi's blackjack program!\n");
         System.out.println("would you like to start the game yes/no?");
         String input1 = sc.next();
+        //loop used to start and end the game
         while(input1.equals("yes"))
         {
             if(skipped){
@@ -48,15 +49,15 @@ public class BlackJackGame {
             playerSum = 0;
             dealerSum = 0;
             //clear the cards list for both everytime we play again
-            playerCardList.clear();
-            playerCardSet.clear();
-            dealerCardList.clear();
-            dealerCardSet.clear();
+            playerCardList.clear();// o(n) TC;
+            playerCardSet.clear();// o(n) TC;
+            dealerCardList.clear();// o(n) TC;
+            dealerCardSet.clear();// o(n) TC;
             deck = new CardDeck();
-            listofCards = deck.generatecards();
+            listofCards = deck.generatecards();//it will o(n) space; and o(n) TC;
 
             //here we shuffle the deck
-            Collections.shuffle(listofCards);
+            Collections.shuffle(listofCards);//o(n) TC;
 
             //start the game here
             initiatePlayer();
@@ -109,9 +110,9 @@ public class BlackJackGame {
     }
 
     //player turn to hit OR Stay
-    private void getPlayerChoose() {
+    private void getPlayerChoose() {//this function runs o(n^2) time or o(1) if player choose stay
         String input2;
-        do {
+        do {//this loop runs o(n) time or o(1) if player choose stay
             if(skipped)
             { 
                 break;
@@ -119,7 +120,7 @@ public class BlackJackGame {
             System.out.println("Would you like to \"hit\" or \"stay\"?");
             input2 = sc.next();
             if (input2.equals("hit")) {
-                getPlayerTurn();
+                getPlayerTurn();//O(n) TC
                 if (playerSum > 21) {
                     System.out.println("Your are busted");
                     skipped = true;
@@ -140,9 +141,9 @@ public class BlackJackGame {
     }
 
     //dealer turn to hit or stay
-    private void getDealerchoose() {
+    private void getDealerchoose() {//this function runs o(n^2) time complexity 
         String dealerchoose;
-        do {
+        do {//this function runs o(n) time complexity
             if(skipped)
             { 
                 break;
@@ -153,7 +154,7 @@ public class BlackJackGame {
                 dealerchoose = "hit";
             }
             if (dealerchoose.equals("hit")) {
-                getDealerTurn();
+                getDealerTurn();//O(n) TC
                 if (dealerSum > 21) {
                     System.out.println("dealer is busted");
                     skipped = true;
@@ -181,8 +182,8 @@ public class BlackJackGame {
         getPlayerTurn();
     }
     //method used to draw a random card from the listofcards for player turn
-    private void getPlayerTurn() {
-        boolean flag = true;
+    private void getPlayerTurn() {//this function take exected only one time if it is bestCase
+        boolean flag = true;      //or take o(n) time in worstcase because util the flag get false;
         do{
         Integer draw = randomDraw();
         boolean isNotPlayer = getIsNotPlayerCard(draw);
@@ -196,8 +197,8 @@ public class BlackJackGame {
         }while(flag);
     }
     //method used to draw a random card from the listofcards for dealer turn
-    private void getDealerTurn() {
-        boolean flag = true;
+    private void getDealerTurn() {//this function take exected only one time if it is bestCase
+        boolean flag = true;      //or take o(n) time in worstcase because util the flag get false;
         do{  
             Integer draw = randomDraw();
             boolean isNotPlayer = getIsNotPlayerCard(draw);
@@ -212,7 +213,7 @@ public class BlackJackGame {
     }
 
     //method used to check the random card is already in dealers cards
-    private boolean getIsNotDealerCard(Integer draw) {
+    private boolean getIsNotDealerCard(Integer draw) {//this take only o(1) time complexity
         StandardCard temp = listofCards.get(draw);
         if(dealerCardSet.contains(temp))
         {
@@ -223,7 +224,7 @@ public class BlackJackGame {
     // method used to check the random card is already in players cards
     private boolean getIsNotPlayerCard(Integer draw) {
         StandardCard temp = listofCards.get(draw);
-        if(playerCardSet.contains(temp))
+        if(playerCardSet.contains(temp))//this take only o(1) time complexity
         {
             return false;
         }
