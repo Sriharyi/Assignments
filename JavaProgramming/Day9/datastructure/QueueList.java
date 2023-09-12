@@ -9,12 +9,16 @@
 }
  
  public class QueueList{
-    Node front;
-    Node rear;
-    Integer size;
+   private Node front;
+   private Node rear;
+   private Integer size;
     QueueList()
     {
         size = 0;
+    }
+    public Integer getSize()
+    {
+        return size;
     }
     public void addLast(int val)
     {
@@ -51,7 +55,7 @@
         Node prevnode = null;
         Node currnode = front2;
         Node nextnode = null;
-        while(currnode!=null)
+        while(currnode!=rear)
         {
             nextnode = currnode.next;
             currnode.next = prevnode;

@@ -1,5 +1,18 @@
 public class EgClass {
     public static void main(String[] args) throws Exception {
+        //for queue
+        // QueueList que = new QueueList();
+        // que.addLast(1);
+        // que.addLast(2);
+        // que.addLast(3);
+        // que.traverse();
+        // que.removeFirst();
+        // que.traverse();
+        // que.reverse();
+        // que.traverse();
+        // que.addLast(6);
+        // que.traverse();
+
 
 
         //for curcular linked list
