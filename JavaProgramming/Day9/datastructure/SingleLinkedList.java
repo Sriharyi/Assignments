@@ -133,9 +133,10 @@ public class SingleLinkedList {
             Node itr = head;
             while(itr!=null) // or itr == tail
             {
-                System.out.println(itr.data);
+                System.out.print(itr.data+" ");
                 itr = itr.next;
             }
+            System.out.println();
         }
 
     }

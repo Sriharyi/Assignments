@@ -1,5 +1,23 @@
 public class EgClass {
     public static void main(String[] args) throws Exception {
+        SingleLinkedList list = new SingleLinkedList();
+        list.addFirst(1);
+        list.addFirst(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.traverse();
+        list.addAtPostion(2, 7);
+        list.traverse();
+        list.reverse();
+        list.traverse();
+        list.removeFirst();
+        list.traverse();
+        list.removeLast();
+        list.traverse();
+
+
+
+
         //For stack
         // Stack s = new Stack();
         // s.push(4);
