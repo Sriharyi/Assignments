@@ -8,11 +8,11 @@ class Node{
     }
 }
 
-public class SingleLinkedList {
+public class CircularLinkedList {
     private Node head;
     private Node tail;
     private Integer size;
-    SingleLinkedList()
+    CircularLinkedList()
     {
         size = 0;
     }
@@ -30,6 +30,7 @@ public class SingleLinkedList {
         else{
             n.next = head;
             head = n;
+            tail.next = n;
         }
         size++;
     }
@@ -46,6 +47,7 @@ public class SingleLinkedList {
         {
             tail.next = n;
             tail = n;
+            n.next = head;
         }
         size++;
     }
@@ -56,7 +58,12 @@ public class SingleLinkedList {
         if(head!=null)
         {
             temp = head.data;
+            // if(head == tail){
+            //      tail = null;
+            //      head = null;
+            // }
             head = head.next;
+            tail.next = head;
             size--;
         }
         return temp;
@@ -77,6 +84,7 @@ public class SingleLinkedList {
             temp = itr.data;
             prev.next =null;
             tail = prev;
+            tail.next =head;
             size--;
         }
         return temp;
@@ -122,13 +130,17 @@ public class SingleLinkedList {
         Node prevnode = null;
         Node currnode = head2;
         Node nextnode = null;
-        while(currnode!=null)
+        while(currnode!=tail)
         {
             nextnode = currnode.next;
             currnode.next = prevnode;
             prevnode = currnode;
             currnode = nextnode;
         }
+            nextnode = currnode.next;
+            currnode.next = prevnode;
+            prevnode = currnode;
+            currnode = nextnode;
         tail = head2;
         head2 = prevnode;
         return head2;
@@ -139,19 +151,16 @@ public class SingleLinkedList {
         if(head!=null)
         {
             Node itr = head;
-            while(itr!=null) // or itr == tail
+            while(itr!=tail) // or itr == tail
             {
                 System.out.print(itr.data+" ");
                 itr = itr.next;
             }
+            System.out.print(itr.data+" ");
             System.out.println();
         }
 
     }
 
-    // public void movetheelement()
-    // {
-
-    // }
 
 }
