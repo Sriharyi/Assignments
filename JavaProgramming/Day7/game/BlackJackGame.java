@@ -12,12 +12,12 @@ import java.util.Set;
 
 public class BlackJackGame {
     //here he have listofcards and playercardlist and dealercardlist to store their cards
-    private List<StandardCard> listofCards = new ArrayList<>();
-    private ArrayList<StandardCard> playerCardList = new ArrayList<>();
-    private ArrayList<StandardCard> dealerCardList = new ArrayList<>();
+    private List<StandardCard> listofCards = new ArrayList<>();//0(n) space
+    private ArrayList<StandardCard> playerCardList = new ArrayList<>();//0(n) space
+    private ArrayList<StandardCard> dealerCardList = new ArrayList<>();//0(n) space
     //here we have playercardset and dealercardset to store their cards in a set to check contains cards in order of (1) time.
-    private Set<StandardCard> playerCardSet = new HashSet<>();
-    private Set<StandardCard> dealerCardSet = new HashSet<>();
+    private Set<StandardCard> playerCardSet = new HashSet<>();//0(n) space
+    private Set<StandardCard> dealerCardSet = new HashSet<>();//0(n) space
     //playersum and dealersum to store the value of total sum
     private Integer playerSum;
     private Integer dealerSum;
@@ -77,7 +77,7 @@ public class BlackJackGame {
             System.out.println(" The dealer has a " + firstCard + " showing, and a hidden card.");
             System.out.println("His total is hidden, too.");
             
-            getPlayerChoose();
+            getPlayerChoose();//o(n^2)
             if(skipped)
             {
                 continue;
@@ -143,7 +143,7 @@ public class BlackJackGame {
     //dealer turn to hit or stay
     private void getDealerchoose() {//this function runs o(n^2) time complexity 
         String dealerchoose;
-        do {//this function runs o(n) time complexity
+        do {//this function runs o(n) time complexity Or run O(1) if dealerSum is > 16
             if(skipped)
             { 
                 break;
@@ -231,7 +231,7 @@ public class BlackJackGame {
         return true;
     }
     //method used to return random Integer with in the deckofcards
-    private Integer randomDraw() {
+    private Integer randomDraw() {//o(1) time complexity
         return r.nextInt(listofCards.size());
     }
 }
