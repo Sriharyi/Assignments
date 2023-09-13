@@ -2,6 +2,10 @@ class Node{
     Integer data;
     Node next;
     Node prev;
+    Node ()
+    {
+
+    }
     Node(Integer data)
     {
         this.data =data;
@@ -152,9 +156,44 @@ public class DoublyLinkedList {
 
     }
 
-    // public void movetheelement()
-    // {
+    public void swapElement(Integer firstpos,Integer secondpos)
+    {
+        Node firstElement=head,secondElement=head;
+        for(int i=0;i<firstpos;i++)
+        {
+            firstElement=firstElement.next;
+        }
+        for(int i=0;i<secondpos;i++)
+        {
+            secondElement = secondElement.next;
+        }
+        Node temp = new Node(firstElement.data);
+        temp.next = firstElement.next;
+        temp.prev = firstElement.prev;
 
-    // }
+        firstElement.next = secondElement.next;
+        firstElement.prev = secondElement.prev;
+
+        firstElement.next.prev = firstElement;
+        firstElement.prev.next =firstElement;
+
+        secondElement.next = temp.next;
+        secondElement.prev = temp.prev;
+
+        secondElement.next.prev = secondElement;
+        secondElement.prev.next = secondElement;
+
+        
+
+
+
+
+        // Node temp = firstElement.next;
+        // firstElement.next = secondElement.next;
+        // secondElement.next = temp;
+        // temp = firstElement.prev;
+        // firstElement.prev = secondElement.prev;
+        // secondElement.prev = temp; 
+    }
 
 }

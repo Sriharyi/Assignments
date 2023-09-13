@@ -5,10 +5,10 @@ public class EgClass {
     Integer input;
     private SingleLinkedList list = new SingleLinkedList();
     private Stack stack = new Stack();
+    private CircularDoublyLinkedList cllist = new CircularDoublyLinkedList();
     public static void main(String[] args) throws Exception {
         
         EgClass eg = new EgClass();
-        
         String operation;
         operation = eg.chooseOperation();
         if(!operation.equals("Exit"))
@@ -119,6 +119,103 @@ public class EgClass {
         }
     }
     private void CDllOperation() {
+        System.out.println("1 for InsertBegin");
+        System.out.println("2 for InsertEnd");
+        System.out.println("3 for InsertAtParticularPosition");
+        System.out.println("4 for DeleteAtBegin");
+        System.out.println("5 for DeleteAtEnd");
+        System.out.println("6 for TraverseTheList");
+        System.out.println("7 for FindthePositionofElement");
+        System.out.println("8 for swaptheelement-from onepos to anotherpos");
+        System.out.println("9 for swaptheelement-by using two values");
+        System.out.println("10 for To Exit");
+        input = sc.nextInt();
+        switch(input)
+        {
+            case 1:
+            {
+                 System.out.println("Enter the value to be inserted");
+                 Integer val  = sc.nextInt();
+                 cllist.addFirst(val);
+                 CDllOperation();
+                 break;
+            }
+            case 2:
+            {
+                 System.out.println("Enter the value to be inserted");
+                 Integer val  = sc.nextInt();
+                 cllist.addLast(val);
+                 CDllOperation();
+                 break;
+            }
+            case 3:
+            {
+                    System.out.println("Enter the value to be inserted");
+                    Integer val  = sc.nextInt();
+                    System.out.println("Enter the position to be Inserted");
+                    Integer pos = sc.nextInt();
+                    try {
+                        cllist.addAtPostion(pos, val);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    CDllOperation();
+            }
+            case 4:
+            {
+                    System.out.println(cllist.removeFirst());
+                    CDllOperation();
+                    break;
+            }
+            case 5:
+            {
+                    System.out.println(cllist.removeLast());
+                    CDllOperation();
+                    break;
+            }
+            case 6:
+            {
+                    cllist.traverse();
+                    CDllOperation();
+                    break;
+            }
+            case 7:
+            {
+                System.out.println("Enter the value");
+                 Integer val  = sc.nextInt();
+                 System.out.println(cllist.findPosition(val));
+                 CDllOperation();
+                 break;
+            }
+            case 8:
+            {
+                System.out.println("Enter the position 1");
+                Integer pos1 = sc.nextInt();
+                System.out.println("Enter the position 2");
+                Integer pos2 = sc.nextInt();
+                cllist.swapElement(pos1, pos2);
+                CDllOperation();
+                break;
+            }
+            case 9:
+            {
+                System.out.println("Enter the value 1");
+                Integer val1 = sc.nextInt();
+                System.out.println("Enter the value 2");
+                Integer val2 = sc.nextInt();
+                cllist.swapElementbyValue(val1, val2);
+                CDllOperation();
+                break;
+            }
+            case 10:
+            {
+                break;
+            }
+            default:
+            {
+                CDllOperation();
+            }
+        }
     }
     private void DllOperation() {
     }
