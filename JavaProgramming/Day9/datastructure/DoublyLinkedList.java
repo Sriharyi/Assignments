@@ -72,16 +72,12 @@ public class DoublyLinkedList {
         Integer temp = Integer.MIN_VALUE;
         if(head!=null)
         {
-            Node itr = head;
-            Node prev =null;
-            while(itr!=null && itr.next!=null) // or we can use itr != tail
-            {
-                prev = itr;
-                itr = itr.next;
+            if(tail.prev==null){
+                tail = null;
+                head = null;
             }
-            temp = itr.data;
-            prev.next =null;
-            tail = prev;
+            tail = tail.prev;
+            tail.next = null;
             size--;
         }
         return temp;
@@ -111,8 +107,10 @@ public class DoublyLinkedList {
                 itr = itr.next;
                 i++;
             }
+            itr.prev = n;
             n.next = itr;
             prev.next = n;
+            n.prev = prev;
             size++;
             return true;
         }
@@ -138,7 +136,7 @@ public class DoublyLinkedList {
         head2 = prevnode;
         return head2;
     }
-
+    
     public void traverse()
     {
         if(head!=null)

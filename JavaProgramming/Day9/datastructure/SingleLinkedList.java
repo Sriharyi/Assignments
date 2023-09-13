@@ -1,6 +1,7 @@
 class Node{
     Integer data;
     Node next;
+    public Object left;
     Node(Integer data)
     {
         this.data =data;
@@ -20,7 +21,7 @@ public class SingleLinkedList {
     {
         return size;
     }
-    public void addFirst(int val)
+    public void InsertBegin(int val)
     {
         Node n = new Node(val);
         if (head==null) {
@@ -34,7 +35,7 @@ public class SingleLinkedList {
         size++;
     }
 
-    public void addLast(int val)
+    public void InsertEnd(int val)
     {
         Node n = new Node(val);
         if(head == null)
@@ -50,7 +51,38 @@ public class SingleLinkedList {
         size++;
     }
 
-    public Integer removeFirst()
+     public void InsertAtPosition(Integer pos,Integer val) throws Exception
+    {
+        if(pos<0 || pos>getSize())
+            throw new Exception("postion exceed the list size"); //or return false;
+        if(pos==0)
+        {
+            InsertBegin(val);
+        }
+        else if(pos==getSize())
+        {
+            InsertEnd(val);
+        }
+        else
+        {
+            Node n = new Node(val);
+            Node itr = head;
+            Integer i=0;
+            Node prev =null;
+            while(itr!=null && i!=pos)
+            {
+                prev = itr;
+                itr = itr.next;
+                i++;
+            }
+            n.next = itr;
+            prev.next = n;
+            size++;
+        }
+    }
+
+
+    public Integer DeleteAtBegin()
     {
         Integer temp = Integer.MIN_VALUE;
         if(head!=null)
@@ -62,7 +94,7 @@ public class SingleLinkedList {
         return temp;
     }
 
-    public Integer removeLast()
+    public Integer DeleteAtEnd()
     {
         Integer temp = Integer.MIN_VALUE;
         if(head!=null)
@@ -82,38 +114,35 @@ public class SingleLinkedList {
         return temp;
     }
 
-    public boolean addAtPostion(Integer pos,Integer val) throws Exception
+    public Integer DeleteAtPosition(Integer pos) throws Exception
     {
-        if(pos<0 && pos>getSize())
-            throw new Exception("postion exceed the list values"); //or return false;
+        if(pos<0 || pos>(getSize()-1))
+            throw new Exception("postion exceed the list size");
+        Integer temp  = Integer.MIN_VALUE;
         if(pos==0)
         {
-            addFirst(val);
-        }
-        else if(pos==getSize())
+            return DeleteAtBegin();
+        }    
+        else if(pos == getSize()-1)
         {
-            addLast(val);
+           return DeleteAtEnd();
         }
-        else
-        {
-            Node n = new Node(val);
+        else{
             Node itr = head;
             Integer i=0;
             Node prev =null;
-            while(itr!=null&& i!=pos)
+            while(itr!=null && i!=pos)
             {
                 prev = itr;
                 itr = itr.next;
                 i++;
             }
-            n.next = itr;
-            prev.next = n;
-            size++;
-            return true;
+            temp = itr.data;
+            prev.next = itr.next;
+            size--;
         }
-        return false;
+        return temp;
     }
-
     public void reverse()
     {
       head = iterativeReverse(head);
@@ -149,9 +178,44 @@ public class SingleLinkedList {
 
     }
 
-    // public void movetheelement()
-    // {
+    public Boolean isPresent(int val)
+    {
+        if(head!=null)
+        {
+            Node itr = head;
+            while(itr!=null) 
+            {
+                
+                if(itr.data == val)
+                    return true;
+                itr = itr.next;
+            }
+        }
+        return false;
+    }
 
-    // }
+
+    public Integer findelement(int val)
+    {
+        Integer pos = -1;
+        if(head!=null)
+        {
+            Node itr = head;
+            while(itr!=null) 
+            {
+                pos++;
+                if(itr.data == val)
+                    return pos;
+                itr = itr.next;
+            }
+        }
+        if(pos==getSize()) pos = -1;
+        return pos;
+    }
+    public void movetheelement(Integer oldpos,Integer newpos) throws Exception
+    {
+        Integer temp = DeleteAtPosition(oldpos);
+        InsertAtPosition(newpos, temp);
+    }
 
 }
