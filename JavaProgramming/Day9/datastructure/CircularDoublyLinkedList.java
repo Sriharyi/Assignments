@@ -143,7 +143,22 @@ public class CircularDoublyLinkedList {
       head = iterativeReverse(head);
     }
     private CircularDNode iterativeReverse(CircularDNode head2) {
-       return null;
+        CircularDNode prevnode = null;
+        CircularDNode currnode = head2;
+        CircularDNode nextnode = null;
+        while(currnode!=tail)
+        {
+            nextnode = currnode.next;
+            currnode.next = prevnode;
+            prevnode = currnode;
+            currnode = nextnode;
+        }
+            nextnode = currnode.next;
+            currnode.next = prevnode;
+            prevnode = currnode;
+            currnode = nextnode;
+        return prevnode;
+        
     }
     
     public void traverse()
@@ -281,6 +296,8 @@ public class CircularDoublyLinkedList {
             }
             case 6:
             {
+                    cllist.traverse();
+                    cllist.reverse();
                     cllist.traverse();
                     CDllOperation();
                     break;
