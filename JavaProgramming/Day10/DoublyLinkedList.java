@@ -199,17 +199,80 @@ public class DoublyLinkedList {
         return head2;
     }
 
-
-    public void swapElement(Integer firstpos,Integer secondpos)
+    public Boolean isPresent(Integer val)
     {
+        if(head!=null)
+        {
+            DllNode currentNode = head;
+            while(currentNode!=null)
+            {
+                if(currentNode.data == val)
+                {
+                    return true;
+                }
+             currentNode=currentNode.next;
+            }
+        }
+        return false;
+    }
+
+    public Integer findPosition(Integer val)
+    {
+        Integer pos = 1;
+        if(isPresent(val))
+        {
+
+            DllNode currentNode = head;
+            while(currentNode!=null)
+            {
+                if(currentNode.data == val)
+                {
+                    break;
+                }
+                pos++;
+                currentNode=currentNode.next;
+            }
+            // if(currentNode==null)
+            // {
+            //     pos = -1;
+            // }
+        }else{
+                pos = -1;
+            }
+            return pos;
+    }
+
+
+    public void swapElementbyPos(Integer firstpos,Integer secondpos)
+    {
+        if(head==null || head.next == null || firstpos==secondpos)
+        {
+            return ;
+        }
         DllNode firstElement=head,secondElement=head;
-        for(int i=0;i<firstpos;i++)
+        for(int i=1;i<firstpos;i++)
         {
             firstElement=firstElement.next;
         }
-        for(int i=0;i<secondpos;i++)
+        for(int i=1;i<secondpos;i++)
         {
             secondElement = secondElement.next;
+        }
+        if(firstElement==head)
+        {
+            head = secondElement;
+        }else if(secondElement==head)
+        {
+            head = firstElement;
+        }
+
+        if(firstElement==tail)
+        {
+            secondElement = tail;
+        }
+        else if(secondElement == tail)
+        {
+            firstElement = tail;
         }
         DllNode temp = new DllNode(firstElement.data);
         temp.next = firstElement.next;
@@ -226,7 +289,6 @@ public class DoublyLinkedList {
 
         secondElement.next.prev = secondElement;
         secondElement.prev.next = secondElement;
-
     }
     public static void main(String[] args) {
          DoublyLinkedList list = new DoublyLinkedList();
@@ -307,7 +369,7 @@ public class DoublyLinkedList {
                     {
                         System.out.println("Enter the value to search");
                         Integer val = sc.nextInt();
-                        // System.out.println(list.findPosition(val));
+                        System.out.println(list.findPosition(val));
                         break;
                     }
                     case 11:
@@ -317,7 +379,7 @@ public class DoublyLinkedList {
                         System.out.println("Enter the postion2");
                         Integer pos2 = sc.nextInt();
                         try {
-                            // list.swapElementbyPos(pos1, pos2);
+                            list.swapElementbyPos(pos1, pos2);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
