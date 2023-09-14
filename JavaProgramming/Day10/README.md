@@ -51,15 +51,15 @@
 
 #insert:
 
-![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dcll1.png)
+![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/cdll1.png)
 
 #delete:
 
-![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dcll2.png)
+![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/cdll2.png)
 
 #swap:
 
-![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dcll3.png)
+![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/cdll3.png)
 
 
 
