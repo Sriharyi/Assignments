@@ -100,13 +100,16 @@ public class DoublyLinkedList {
         {
             if(head.next == null)
             {
+                temp = head.data;
                 head = null;
                 tail = null;
-                return temp;
+                
+            }else{
+
+                temp = head.data;
+                head = head.next;
+                head.prev =null;
             }
-            temp = head.data;
-            head = head.next;
-            head.prev =null;
             size--;
         }
         return temp;
@@ -118,13 +121,15 @@ public class DoublyLinkedList {
         if(head!=null)
         {
             if(tail.prev==null){
+                temp = tail.data;
                 tail = null;
                 head = null;
-                return temp;
             }
+            else{
             temp = tail.data;
             tail = tail.prev;
             tail.next = null;
+            }
             size--;
         }
         return temp;
@@ -193,6 +198,7 @@ public class DoublyLinkedList {
             currNode.next = temp;
             currNode = currNode.prev;
         }
+        tail = head;
         if (temp != null) {
             head2 = temp.prev;
         }
@@ -232,33 +238,51 @@ public class DoublyLinkedList {
                 pos++;
                 currentNode=currentNode.next;
             }
-            // if(currentNode==null)
-            // {
-            //     pos = -1;
-            // }
         }else{
                 pos = -1;
             }
             return pos;
     }
+     public void swapElementbyValue(Integer val1,Integer val2) throws Exception
+     {
+        Integer pos1 = findPosition(val1);
+        Integer pos2 = findPosition(val2);
+        try {
+            swapElementbyPos(pos1, pos2);
+        } catch (Exception e) {
+            throw new Exception("values not found");
+        }
+     }
 
 
-    public void swapElementbyPos(Integer firstpos,Integer secondpos)
+    public void swapElementbyPos(Integer firstpos,Integer secondpos) throws Exception
     {
+        if(firstpos<1 || firstpos>getSize())
+        {
+            throw new Exception("size cannot be negative or exceed the list the size");
+        }
+
+        if(secondpos<1 || secondpos>getSize())
+        {
+            throw new Exception("size cannot be negative or exceed the list the size");
+        }
         if(head==null || head.next == null || firstpos==secondpos)
         {
             return ;
         }
+        
         DllNode firstElement=head,secondElement=head;
         for(int i=1;i<firstpos;i++)
         {
             firstElement=firstElement.next;
         }
+
         for(int i=1;i<secondpos;i++)
         {
             secondElement = secondElement.next;
         }
-        if(firstElement==head)
+
+         if(firstElement==head)
         {
             head = secondElement;
         }else if(secondElement==head)
@@ -268,27 +292,36 @@ public class DoublyLinkedList {
 
         if(firstElement==tail)
         {
-            secondElement = tail;
+            tail=secondElement;
         }
         else if(secondElement == tail)
         {
-            firstElement = tail;
+            tail=firstElement;
         }
-        DllNode temp = new DllNode(firstElement.data);
-        temp.next = firstElement.next;
-        temp.prev = firstElement.prev;
-
+       
+        
+        DllNode temp = firstElement.next;
         firstElement.next = secondElement.next;
+        secondElement.next = temp;
+
+        if(firstElement.next!=null)
+            firstElement.next.prev = firstElement;
+        if(secondElement.next!=null)
+            secondElement.next.prev = secondElement;
+        
+        temp = firstElement.prev;
         firstElement.prev = secondElement.prev;
+        secondElement.prev = temp;
 
-        firstElement.next.prev = firstElement;
-        firstElement.prev.next =firstElement;
-
-        secondElement.next = temp.next;
-        secondElement.prev = temp.prev;
-
-        secondElement.next.prev = secondElement;
-        secondElement.prev.next = secondElement;
+        if(firstElement.prev != null)
+        {
+            firstElement.prev.next = firstElement;
+        }
+        if(secondElement.prev != null)
+        {
+            secondElement.prev.next = secondElement;
+        }
+        
     }
     public static void main(String[] args) {
          DoublyLinkedList list = new DoublyLinkedList();
@@ -307,6 +340,15 @@ public class DoublyLinkedList {
                 System.out.println("11 for SwapTheElementbyPosition");
                 System.out.println("12 for SwapTheElementbyValue");
                 System.out.println("13 for ToExit");
+
+
+                System.out.println("the list Elements are :");
+                list.addFirst(1);
+                list.addFirst(2);
+                list.addFirst(3);
+                list.addFirst(4);
+                list.addFirst(5);
+                list.traverse();
             do {
                 System.out.println("Choose the operation?");
                 input = sc.nextInt();
@@ -392,6 +434,11 @@ public class DoublyLinkedList {
                         Integer val1 = sc.nextInt();
                         System.out.println("Enter the value2");
                         Integer val2 = sc.nextInt();
+                        try {
+                            list.swapElementbyValue(val1, val2);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         break;
                     }
                     case 13:

@@ -57,10 +57,11 @@ public class CircularLinkedList{
             if (head == tail) {
                 tail = null;
                 head = null;
-                return temp;
             }
-            head = head.next;
-            tail.next = head;
+            else{
+                head = head.next;
+                tail.next = head;
+            }
             size--;
         }
         return temp;
@@ -236,48 +237,89 @@ public class CircularLinkedList{
             throw new Exception("postion cannot be negative or exceed the list values");
         if(position2<=0 || position2>getSize())
             throw new Exception("postion cannot be negative or exceed the list values");
-        if(position1==position2)
+        if(head==null || head.next==null ||position1==position2)
         {
             return;
         }
-        if(position1>position2)
+        CllNode firstElement,secondElement,firstElementPrev,secondElementPrev;
+        Integer count1,count2;
+        firstElement = head;
+        secondElement = head;
+        firstElementPrev =null;
+        secondElementPrev=null;
+        count1=1;
+        count2=1;
+        while(firstElement!=tail)
         {
-            Integer temp = position1;
-            position2 = position1;
-            position1 = temp;
-        }
-        CllNode firstElement = head;
-        CllNode secondElement = head;
-        CllNode firstElementprev = null;
-        CllNode secondElementprev = null;
-        if(position1==1)
-        {
-            
-        }
-        for(Integer i = 1; i < position1; i++) {
-            firstElementprev = firstElement;
+            if(count1==position1)
+                break;
+            count1++;
+            firstElementPrev = firstElement;
             firstElement = firstElement.next;
         }
-        for(Integer i=1;i<position2;i++)
+        if(firstElement==tail)
         {
-           secondElementprev=secondElement;
-           secondElement=secondElement.next;
+            if(count1!=position1)
+                return;
+                
+        }
+         while(secondElement!=tail)
+        {
+            if(count2==position2)
+                break;
+            count2++;
+            secondElementPrev = secondElement;
+            secondElement = secondElement.next;
+        }
+        if(secondElement==tail)
+        {
+             if(count2!=position2)  
+                return ;    
         }
 
-        CllNode temp = new CllNode(firstElement.data);
-        temp.next = firstElement.next;
+        if(firstElement==head)
+        {
+            head=secondElement;
+            
+        }
+        else if(secondElement==head)
+        {
+            head = firstElement;
+        }
 
-        firstElement.next = secondElement.next;
-        if(secondElementprev!=null)
-            secondElementprev.next = firstElement;
+        if(firstElement==tail)
+        {
+            tail = secondElement;
+        }
+        else if(secondElement==tail)
+        {
+            tail = firstElement;
+        }
+
+        if(firstElementPrev!=null)
+        {
+            firstElementPrev.next = secondElement;
+        }
         
-        secondElement.next = temp.next;
-        if(firstElementprev==null){
-            head = secondElement;
-            tail.next = secondElement;
+        if(secondElementPrev!=null)
+        {
+            secondElementPrev.next = firstElement;
         }
-        else{
-            firstElementprev.next = secondElement;
+
+        CllNode temp = firstElement.next;
+        firstElement.next = secondElement.next;
+        secondElement.next = temp;
+    }
+
+
+    public void swapElementbyValue(Integer val1,Integer val2) throws Exception
+    {
+        Integer pos1 = findPosition(val1);
+        Integer pos2 = findPosition(val2);
+        try {
+            swapElementbyPos(pos1, pos2);
+        } catch (Exception e) {
+            throw new Exception("values not found");
         }
     }
 
@@ -299,6 +341,14 @@ public class CircularLinkedList{
                 System.out.println("11 for SwapTheElementbyPosition");
                 System.out.println("12 for SwapTheElementbyValue");
                 System.out.println("13 for ToExit");
+
+                System.out.println("the list Elements are :");
+                list.addFirst(1);
+                list.addFirst(2);
+                list.addFirst(3);
+                list.addFirst(4);
+                list.addFirst(5);
+                list.traverse();
             do {
                 System.out.println("Choose the operation?");
                 input = sc.nextInt();
@@ -384,6 +434,11 @@ public class CircularLinkedList{
                         Integer val1 = sc.nextInt();
                         System.out.println("Enter the value2");
                         Integer val2 = sc.nextInt();
+                        try {
+                            list.swapElementbyValue(val1, val2);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         break;
                     }
                     case 13:
@@ -396,7 +451,6 @@ public class CircularLinkedList{
                 }
             } while (input != 13);
         }
-        
     }
 
     
