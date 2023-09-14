@@ -5,41 +5,60 @@
 
 #output for SinglyLinkedList:
 
-Insert:
+#Insert:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/sll1.png)
 
-Delete:
+#Delete:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/sll2.png)
 
-swap:
+#swap:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/sll3.png)
 
 
 #output for DoublyLinkedList:
 
-Insert:
+#Insert:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dll1.png)
-Delete:
+
+#Delete:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dll2.png)
-swap:
+
+#swap:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dll3.png)
 
 
 #output for CircularLinkedList:
-insert:
+
+#insert:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/cll1.png)
-delete:
+
+#delete:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/cll2.png)
-swap:
+
+#swap:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/cll3.png)
 
 #output for CircularDoublyLinkedList:
 
-insert:
+#insert:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dcll1.png)
-delete:
+
+#delete:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dcll2.png)
-swap:
+
+#swap:
+
 ![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/dcll3.png)
 
 
