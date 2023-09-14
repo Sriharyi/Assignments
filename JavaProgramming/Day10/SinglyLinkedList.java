@@ -235,7 +235,84 @@ public class SinglyLinkedList {
             return pos;
     }
 
+    public void swapElementbyValue(Integer val1,Integer val2) throws Exception
+    {
+        Integer pos1 = findPosition(val1);
+        Integer pos2 = findPosition(val2);
+        swapElementbyPos(pos1, pos2);
+    }
 
+    public void swapElementbyPos(Integer pos1, Integer pos2) throws Exception{
+        if(pos1<=0 || pos1>getSize())
+        {
+            throw new Exception("Position cannot be negative or exceed the value");
+        }
+        if(pos2<=0 || pos2>getSize())
+        {
+            throw new Exception("Position cannot be negative or exceed the value");
+        }
+        if(head==null || head.next==null || pos1==pos2)
+        {
+            return;
+        }
+        SllNode firstElement,secondElement,firstElementPrev,secondElementPrev;
+        Integer count1,count2;
+        firstElement = head;
+        secondElement = head;
+        firstElementPrev =null;
+        secondElementPrev=null;
+        count1=1;
+        count2=1;
+        while(firstElement!=null)
+        {
+            if(count1==pos1)
+                break;
+            count1++;
+            firstElementPrev = firstElement;
+            firstElement = firstElement.next;
+        }
+
+         while(secondElement!=null)
+        {
+            if(count2==pos2)
+                break;
+            count2++;
+            secondElementPrev = secondElement;
+            secondElement = secondElement.next;
+        }
+
+        if(firstElement==head)
+        {
+            head =secondElement;
+        }
+        else if(secondElement==head)
+        {
+            head = firstElement;
+        }
+
+        if(firstElement==tail)
+        {
+            tail = secondElement;
+        }
+        else if(secondElement==tail)
+        {
+            tail = firstElement;
+        }
+
+        if(firstElementPrev!=null)
+        {
+            firstElementPrev.next = secondElement;
+        }
+        
+        if(secondElementPrev!=null)
+        {
+            secondElementPrev.next = firstElement;
+        }
+
+        SllNode temp = firstElement.next;
+        firstElement.next = secondElement.next;
+        secondElement.next = temp;
+    }
 
 
 
@@ -333,7 +410,7 @@ public class SinglyLinkedList {
                         System.out.println("Enter the postion2");
                         Integer pos2 = sc.nextInt();
                         try {
-                            // list.swapElementbyPos(pos1, pos2);
+                            list.swapElementbyPos(pos1, pos2);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
