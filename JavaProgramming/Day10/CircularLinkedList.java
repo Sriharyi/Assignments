@@ -88,7 +88,7 @@ public class CircularLinkedList{
             Integer temp = Integer.MIN_VALUE;
             if(head!=null)
             {
-                if (pos < 0 || pos > getSize())
+                if (pos <= 0 || pos > getSize())
                     throw new Exception("postion exceed the list values"); 
                 if(pos==1){
                     temp = removeFirst();
@@ -134,8 +134,8 @@ public class CircularLinkedList{
 
     }
 
-        public void addAtPostion(Integer pos, Integer val) throws Exception {
-        if (pos < 0 || pos > (getSize()+1))
+        public void addAtPosition(Integer pos, Integer val) throws Exception {
+        if (pos <= 0 || pos > (getSize()+1))
             throw new Exception("postion exceed the list values"); // or return false;
         if (pos == 1) {
             addFirst(val);
@@ -232,9 +232,9 @@ public class CircularLinkedList{
 
     public void swapElementbyPos(Integer position1,Integer position2) throws Exception
     {
-        if(position1<0 || position1>getSize())
+        if(position1<=0 || position1>getSize())
             throw new Exception("postion cannot be negative or exceed the list values");
-        if(position2<0 || position2>getSize())
+        if(position2<=0 || position2>getSize())
             throw new Exception("postion cannot be negative or exceed the list values");
         if(position1==position2)
         {
@@ -283,7 +283,7 @@ public class CircularLinkedList{
 
 
     public static void main(String[] args) {
-        CircularLinkedList cllist = new CircularLinkedList();
+        CircularLinkedList list = new CircularLinkedList();
         try (Scanner sc = new Scanner(System.in)) {
             Integer input;
                 System.out.println("1 for InsertBegin");
@@ -306,13 +306,13 @@ public class CircularLinkedList{
                     case 1: {
                         System.out.println("Enter the value to be inserted");
                         Integer val = sc.nextInt();
-                        cllist.addFirst(val);
+                        list.addFirst(val);
                         break;
                     }
                     case 2: {
                         System.out.println("Enter the value to be inserted");
                         Integer val = sc.nextInt();
-                        cllist.addLast(val);
+                        list.addLast(val);
                         break;
                     }
                     case 3: {
@@ -321,47 +321,47 @@ public class CircularLinkedList{
                         System.out.println("Enter the value");
                         Integer value = sc.nextInt();
                         try {
-                            cllist.addAtPostion(position, value);
+                            list.addAtPosition(position, value);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                         break;
                     }
                     case 4: {
-                        System.out.println(cllist.removeFirst());
+                        System.out.println(list.removeFirst());
                         break;
                     }
                     case 5: {
-                        System.out.println(cllist.removeLast());
+                        System.out.println(list.removeLast());
                         break;
                     }
                     case 6:{
                         System.out.println("Enter the postion to be deleted");
                         Integer pos = sc.nextInt();
                         try {
-                            System.out.println(cllist.removeAtPos(pos));
+                            System.out.println(list.removeAtPos(pos));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                         break;
                     }
                     case 7: {
-                        cllist.traverse();
+                        list.traverse();
                         break;
                     }
                     case 8: {
-                        cllist.reverse();
+                        list.reverse();
                         break;
                     }
                     case 9: {
-                        System.out.println(cllist.getSize());
+                        System.out.println(list.getSize());
                         break;
                     }
                     case 10:
                     {
                         System.out.println("Enter the value to search");
                         Integer val = sc.nextInt();
-                        System.out.println(cllist.findPosition(val));
+                        System.out.println(list.findPosition(val));
                         break;
                     }
                     case 11:
@@ -371,7 +371,7 @@ public class CircularLinkedList{
                         System.out.println("Enter the postion2");
                         Integer pos2 = sc.nextInt();
                         try {
-                            cllist.swapElementbyPos(pos1, pos2);
+                            list.swapElementbyPos(pos1, pos2);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
