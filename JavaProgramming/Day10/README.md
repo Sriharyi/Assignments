@@ -1,5 +1,12 @@
 #Hai this the readme for Day10 Work
 
-output for DoublyLinkedList
+#Inputs:
+![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/Screenshot%20from%202023-09-14%2010-36-11.png)
 
-![Alt text](image link)
+#output for DoublyLinkedList:
+
+![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/Screenshot%20from%202023-09-14%2010-37-18.png)
+
+![Alt text](https://github.com/Sriharyi/Assignments/blob/main/JavaProgramming/Day10/images/Screenshot%20from%202023-09-14%2010-37-39.png)
+
+
