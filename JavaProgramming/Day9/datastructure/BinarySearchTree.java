@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 class BinaryTreeNode
 {
@@ -155,6 +159,29 @@ public class BinarySearchTree {
         }
     }
     
+    public List<List<Integer>> breadthFirstSearch()
+    {
+        Queue<BinaryTreeNode> q = new LinkedList<>();
+        
+        List<List<Integer>> level = new ArrayList();
+        q.offer(root);
+        while(!q.isEmpty())
+        {   
+            Integer temp = q.size();
+            List<Integer> al = new ArrayList<>();
+            while(temp-->0)
+            {
+                BinaryTreeNode popped = q.poll();
+                al.add(popped.data);
+                if(popped.left!=null)
+                    q.add(popped.left);
+                if(popped.right!=null)
+                    q.add(popped.right);
+            }
+            level.add(al);
+        }
+        return level;
+    }
     BinaryTreeNode InsertInBSTFunc(BinaryTreeNode currentNode,BinaryTreeNode elementtobeInsert)
     {
         if(currentNode.data>elementtobeInsert.data)
@@ -188,12 +215,14 @@ public class BinarySearchTree {
         bst.InsertInBST(12);
         bst.InsertInBST(35);
         bst.InsertInBST(75);
-        bst.inorder();
-        bst.deleteKey(75);
-        bst.inorder();
-        bst.preorder();
-        bst.postorder();
+        // bst.inorder();
+        // bst.deleteKey(75);
+        // bst.inorder();
+        // bst.preorder();
+        // bst.postorder();
+        System.out.println(bst.breadthFirstSearch().toString());
 
+        Queue<BinaryTreeNode> qq = new PriorityQueue<>();
     }
     
 }
