@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class BinaryTreeNode
 {
     int data;
@@ -33,17 +35,69 @@ public class BinarySearchTree {
     }
     void inorder()
     {
-        inorderRecur(root);
+        ArrayList<Integer> al = new ArrayList<>();
+        inorderRecur(root,al);
+        for(Integer num:al)
+        {
+            System.out.print(num+" ");
+        }
+        System.out.println();
     }
-    void inorderRecur(BinaryTreeNode root2)
+    void inorderRecur(BinaryTreeNode root2,ArrayList<Integer> aList)
     {
         if(root2!=null)
         {
-            inorderRecur(root2.left);
-            System.out.println(root2.data);
-            inorderRecur(root2.right);
+            inorderRecur(root2.left,aList);
+            aList.add(root2.data);
+            inorderRecur(root2.right,aList);
         }
     }
+
+
+
+
+      void preorder()
+    {
+        ArrayList<Integer> al = new ArrayList<>();
+        preorderRecur(root,al);
+        for(Integer num:al)
+        {
+            System.out.print(num+" ");
+        }
+        System.out.println();
+    }
+    void preorderRecur(BinaryTreeNode root2,ArrayList<Integer> aList)
+    {
+        if(root2!=null)
+        {
+            aList.add(root2.data);
+            preorderRecur(root2.left,aList);
+            preorderRecur(root2.right,aList);
+        }
+    }
+
+    void postorder()
+    {
+        ArrayList<Integer> al = new ArrayList<>();
+        postorderRecur(root,al);
+        for(Integer num:al)
+        {
+            System.out.print(num+" ");
+        }
+        System.out.println();
+    }
+    void postorderRecur(BinaryTreeNode root2,ArrayList<Integer> aList)
+    {
+        if(root2!=null)
+        {
+            postorderRecur(root2.left,aList);
+            postorderRecur(root2.right,aList);
+            aList.add(root2.data);
+        }
+    }
+
+
+
     void deleteKey(int key) {
         root = deleteRec(root, key);
       }
@@ -134,9 +188,11 @@ public class BinarySearchTree {
         bst.InsertInBST(12);
         bst.InsertInBST(35);
         bst.InsertInBST(75);
-        bst.findtheElement(75);
+        bst.inorder();
         bst.deleteKey(75);
         bst.inorder();
+        bst.preorder();
+        bst.postorder();
 
     }
     
