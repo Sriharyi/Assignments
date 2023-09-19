@@ -138,6 +138,13 @@ public class BinarySearchTree {
         }
         return minv;
       }
+      Boolean search(Integer key)
+      {
+        if(traversetheTreeAndFindElement(root, key)!=null)
+            return true;
+        else    
+            return false;
+      }
     BinaryTreeNode traversetheTreeAndFindElement(BinaryTreeNode currentNode,Integer key)
     {
         if(currentNode==null)
@@ -221,7 +228,7 @@ public class BinarySearchTree {
        
         System.out.println(bst.breadthFirstSearch().toString());
 
-        Queue<BinaryTreeNode> qq = new PriorityQueue<>();
+        System.out.println(bst.search(50));
     }
     
 }
