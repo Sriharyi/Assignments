@@ -195,81 +195,44 @@ class NaryTree{
         return null;
     }
 
+    public int heightOfTree()
+    {
+        return calculateHeight(root);
+    }
+    public int calculateHeight(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int maxHeight = 0;
+
+        for (TreeNode child : node.children) {
+            int childHeight = calculateHeight(child);
+            maxHeight = Math.max(maxHeight, childHeight);
+        }
+
+        return maxHeight + 1;
+    }
+
     public static void main(String[] args) {
         NaryTree tree = new NaryTree();
         tree.insert(1, 10);
         tree.insert(10, 4);
         tree.insert(10, 6);
         tree.insert(10, 5);
-         tree.insert(4, 22);
+        tree.insert(4, 22);
         tree.insert(4, 54);
         tree.insert(22, 9);
         tree.breadthFirstTraversal();
         tree.delete(10);
         tree.breadthFirstTraversal();
+        System.out.println(tree.heightOfTree());
     }
 }
 
 
 
 
-
-
-
-
-
-
-
-//     void inorder(TreeNode root) {
-//         if (root == null) {
-//             return;
-//         }
-
-//         for (TreeNode child : root.children) {
-//             inorder(child);
-//             System.out.print(root.data + " ");
-//         }
-//     }
-//     void preorder(TreeNode root) {
-//         if (root == null) {
-//             return;
-//         }
-
-//         System.out.print(root.data + " ");
-
-//         for (TreeNode child : root.children) {
-//             preorder(child);
-//         }
-//     }
-//      void postorder(TreeNode root) {
-//         if (root == null) {
-//             return;
-//         }
-        
-//         for (TreeNode child : root.children) {
-//             postorder(child);
-//         }
-//          System.out.print(root.data + " ");
-//     }
-
-//     void levelOrderTraversal() {
-//         if (root == null) {
-//             System.out.println("Empty tree");
-//             return;
-//         }
-
-//         Queue<TreeNode> queue = new LinkedList<>();
-//         queue.add(root);
-
-//         while (!queue.isEmpty()) {
-//             TreeNode currentNode = queue.poll();
-//             System.out.print(currentNode.data + " ");
-
-//             for (TreeNode child : currentNode.children) {
-//                 queue.add(child);
-//             }
-//         }
-//     }
 //     int Height(TreeNode root) {
 //                if (root == null) {
 //             return 0; 
