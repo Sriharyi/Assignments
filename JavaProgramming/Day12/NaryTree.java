@@ -17,7 +17,7 @@ class TreeNode{
 
 class NaryTree{
     private TreeNode root;
-    Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     
     public void insert(Integer parentVal,Integer inputVal)
     {
@@ -112,6 +112,11 @@ class NaryTree{
                 }
                 System.out.println("Enter the index of above node the which is going to replace the deleted node");
                 Integer ind = sc.nextInt();
+                if(ind<0 || ind>=tobeDeletedNode.children.size())
+                {
+                    System.out.println("index cannot be negative or do not exceed the value");
+                    return ;
+                }
                 TreeNode swapNode = tobeDeletedNode.children.get(ind);
                 for(TreeNode child : tobeDeletedNode.children)
                 {
@@ -151,6 +156,11 @@ class NaryTree{
                 }   
                 System.out.println("Enter the index of above node the which is going to replace the deleted node");
                 Integer ind = sc.nextInt();
+                if(ind<0 || ind>=tobeDeletedNode.children.size())
+                {
+                    System.out.println("index cannot be negative or do not exceed the value");
+                    return ;
+                }
                 TreeNode parent = tobeDeletedNode.parent;
                 TreeNode swapNode = tobeDeletedNode.children.get(ind);
                 for(TreeNode child : tobeDeletedNode.children)
@@ -216,17 +226,54 @@ class NaryTree{
 
     public static void main(String[] args) {
         NaryTree tree = new NaryTree();
-        tree.insert(1, 10);
-        tree.insert(10, 4);
-        tree.insert(10, 6);
-        tree.insert(10, 5);
-        tree.insert(4, 22);
-        tree.insert(4, 54);
-        tree.insert(22, 9);
-        tree.breadthFirstTraversal();
-        tree.delete(10);
-        tree.breadthFirstTraversal();
-        System.out.println(tree.heightOfTree());
+        // tree.insert(1, 10);
+        // tree.insert(10, 4);
+        // tree.insert(10, 6);
+        // tree.insert(10, 5);
+        // tree.insert(4, 22);
+        // tree.insert(4, 54);
+        // tree.insert(22, 9);
+        // tree.breadthFirstTraversal();
+        // tree.delete(10);
+        // tree.breadthFirstTraversal();
+        // System.out.println(tree.heightOfTree());
+        int choice;
+        while(true){
+            System.out.println("\n1.Insert Tree");
+            System.out.println("2.df traversal");
+            System.out.println("3.bf traversal");
+            System.out.println("4.Delete Tree");
+            System.out.println("5.Height of tree");
+            System.out.println("6.Exit");         
+            choice = sc.nextInt();
+            switch(choice){
+                case 1:
+                    System.out.println("Enter key value : ");
+                    int inputKey=sc.nextInt();
+                    System.out.println("Enter parent key value : ");
+                    int parentkey=sc.nextInt();
+                    tree.insert(parentkey, inputKey);
+                    break;
+                case 2:
+                    tree.depthFirstTraversal();
+                    break;
+                case 3:
+                    tree.breadthFirstTraversal();
+                    break;
+                case 4:
+                    System.out.println("Enter a value to be deleted : ");
+                    int val=sc.nextInt();
+                    tree.delete(val);
+                    break;
+                case 5:
+                    System.out.println("The height is : "+tree.heightOfTree());
+                    break;
+                case 6:
+                    return;                    
+                default:
+                    System.out.println("invalid choice");
+            }
+        }
     }
 }
 
