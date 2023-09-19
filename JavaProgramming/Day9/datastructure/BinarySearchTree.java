@@ -209,17 +209,16 @@ public class BinarySearchTree {
     }
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
+        bst.InsertInBST(10);
+        bst.InsertInBST(20);
+        bst.InsertInBST(30);
+        bst.InsertInBST(40);
         bst.InsertInBST(50);
-        bst.InsertInBST(100);
-        bst.InsertInBST(25);
-        bst.InsertInBST(12);
-        bst.InsertInBST(35);
-        bst.InsertInBST(75);
-        // bst.inorder();
+        // bst.InsertInBST(75);
+            System.out.println(bst.breadthFirstSearch().toString());
         // bst.deleteKey(75);
-        // bst.inorder();
-        // bst.preorder();
-        // bst.postorder();
+        bst.deleteKey(10);
+       
         System.out.println(bst.breadthFirstSearch().toString());
 
         Queue<BinaryTreeNode> qq = new PriorityQueue<>();
