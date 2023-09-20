@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.Queue;
 
 class BinaryTreeNode
 {
     int data;
+    int level;
     BinaryTreeNode left,right,parent;
     BinaryTreeNode(Integer data)
     {
@@ -24,19 +24,57 @@ public class BinarySearchTree {
         BinaryTreeNode newNode = new BinaryTreeNode(value);
         if(root == null)
         {
+            newNode.level = 0;
             root = newNode;
         }
         else
         {
             BinaryTreeNode currentNode = InsertInBSTFunc(root, newNode);
             newNode.parent = currentNode;
+            newNode.level = currentNode.level+1;
         }
     }
+
+     BinaryTreeNode InsertInBSTFunc(BinaryTreeNode currentNode,BinaryTreeNode elementtobeInsert)
+    {
+        if(currentNode.data>elementtobeInsert.data)
+        {
+            if(currentNode.left == null)
+            {
+                currentNode.left = elementtobeInsert;
+                return currentNode;
+            }
+            else{
+                return InsertInBSTFunc(currentNode.left, elementtobeInsert);
+            }
+        }
+        else{
+            if(currentNode.right == null)
+            {
+                currentNode.right = elementtobeInsert;
+                return currentNode;
+            }
+            else
+            {
+                return InsertInBSTFunc(currentNode.right, elementtobeInsert);
+            }
+        }
+    }
+
     void findtheElement(Integer key)
     {
         BinaryTreeNode element = traversetheTreeAndFindElement(root, key);
-        System.out.println(element.data);
+        if(element != null){
+            System.out.println(element.data);
+            System.out.println("level of the element "+element.level);
+            System.out.println("height of the element "+(element.level+1));
+        }
+        else
+        {
+            System.out.println("element not found");
+        }
     }
+
     void inorder()
     {
         ArrayList<Integer> al = new ArrayList<>();
@@ -157,11 +195,9 @@ public class BinarySearchTree {
         }
         else if(currentNode.data>key)
         {
-            System.out.println(currentNode.data);
             return traversetheTreeAndFindElement(currentNode.left, key);
         }
         else{
-            System.out.println(currentNode.data);
             return traversetheTreeAndFindElement(currentNode.right, key);
         }
     }
@@ -189,46 +225,22 @@ public class BinarySearchTree {
         }
         return level;
     }
-    BinaryTreeNode InsertInBSTFunc(BinaryTreeNode currentNode,BinaryTreeNode elementtobeInsert)
-    {
-        if(currentNode.data>elementtobeInsert.data)
-        {
-            if(currentNode.left == null)
-            {
-                currentNode.left = elementtobeInsert;
-                return currentNode;
-            }
-            else{
-                return InsertInBSTFunc(currentNode.left, elementtobeInsert);
-            }
-        }
-        else{
-            if(currentNode.right == null)
-            {
-                currentNode.right = elementtobeInsert;
-                return currentNode;
-            }
-            else
-            {
-                return InsertInBSTFunc(currentNode.right, elementtobeInsert);
-            }
-        }
-    }
+   
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
-        bst.InsertInBST(10);
-        bst.InsertInBST(20);
         bst.InsertInBST(30);
+        bst.InsertInBST(20);
+        bst.InsertInBST(10);
         bst.InsertInBST(40);
         bst.InsertInBST(50);
-        // bst.InsertInBST(75);
-            System.out.println(bst.breadthFirstSearch().toString());
+        bst.InsertInBST(75);
         // bst.deleteKey(75);
-        bst.deleteKey(10);
-       
+        // bst.deleteKey(10);
+        
+        
         System.out.println(bst.breadthFirstSearch().toString());
-
-        System.out.println(bst.search(50));
+        bst.findtheElement(75);
+        System.out.println(bst.breadthFirstSearch().toString());
     }
     
 }
