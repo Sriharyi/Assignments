@@ -69,6 +69,53 @@ public class DirectedGraph{
         }
         System.out.println();
     }
+     public void dfs(int startNodeval)
+    {
+        GraphNode startNode = findNode(startNodeval);
+        if(startNode!=null)
+        {
+            dfs(startNode);
+        }
+        else{
+            System.out.println("StartNode is not found");
+        }
+    }
+    public void dfs(GraphNode startNode)
+    {
+         if (startNode == null) {
+            System.out.println("Start node is null.");
+            return;
+        }
+
+        LinkedList<GraphNode> stack = new LinkedList<>();
+        List<Integer> result = new ArrayList<>();
+        Set<GraphNode> visited = new HashSet<>();
+
+        stack.push(startNode);
+        visited.add(startNode);
+
+        System.out.println("DFS Traversal starting from node " + startNode.getData() + ":");
+        while (!stack.isEmpty()) {
+            System.out.println("Stack values: ");
+            for(GraphNode val:stack)
+            {
+                System.out.print(val.getData()+" ");
+            }
+            System.out.println();
+
+            GraphNode currentNode = stack.pop();
+            result.add(currentNode.getData());
+
+            for (GraphNode nextNode : currentNode.getNextNodes()) {
+                if (!visited.contains(nextNode)) {
+                    stack.push(nextNode);
+                    visited.add(nextNode);
+                }
+            }
+        }
+        System.out.println(result.toString());
+        System.out.println();
+    }
     public void printGraph() {
         for (GraphNode node:nodes) {
             int vertex = node.getData();
@@ -95,8 +142,12 @@ public class DirectedGraph{
         graph1.addEdgetoGraph(3, 5);
         graph1.addEdgetoGraph(4, 5);
 
-        graph1.printGraph();
-        graph1.bfs(3);
+ 
+ 
+
+        // graph1.printGraph();
+        // graph1.bfs(2);
+        graph1.dfs(2);
     }
 }
 

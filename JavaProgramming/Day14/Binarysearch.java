@@ -23,7 +23,7 @@ public class Binarysearch{
         {
             System.out.println("Element not found");
         }
-
+        sc.close();
 
     }
 

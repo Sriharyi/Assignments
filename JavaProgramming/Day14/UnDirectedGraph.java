@@ -23,6 +23,7 @@ public class UnDirectedGraph{
             System.out.println("vertex cannot be found");
         }
     }
+    
     public GraphNode findNode(int key) {
         for(GraphNode node:nodes)
         {
@@ -70,6 +71,44 @@ public class UnDirectedGraph{
         }
         System.out.println();
     }
+    public void dfs(int startNodeval)
+    {
+        GraphNode startNode = findNode(startNodeval);
+        if(startNode!=null)
+        {
+            dfs(startNode);
+        }
+        else{
+            System.out.println("StartNode is not found");
+        }
+    }
+    public void dfs(GraphNode startNode)
+    {
+         if (startNode == null) {
+            System.out.println("Start node is null.");
+            return;
+        }
+
+        Stack<GraphNode> stack = new Stack<>();
+        Set<GraphNode> visited = new HashSet<>();
+
+        stack.push(startNode);
+        visited.add(startNode);
+
+        System.out.println("DFS Traversal starting from node " + startNode.getData() + ":");
+        while (!stack.isEmpty()) {
+            GraphNode currentNode = stack.pop();
+            System.out.print(currentNode.getData() + " ");
+
+            for (GraphNode nextNode : currentNode.getNextNodes()) {
+                if (!visited.contains(nextNode)) {
+                    stack.push(nextNode);
+                    visited.add(nextNode);
+                }
+            }
+        }
+        System.out.println();
+    }
     public void printGraph() {
         for (GraphNode node:nodes) {
             int vertex = node.getData();
@@ -97,6 +136,7 @@ public class UnDirectedGraph{
         graph1.addEdgetoGraph(4, 5);
 
         graph1.printGraph();
-        graph1.bfs(3);
+        graph1.bfs(2);
+        graph1.dfs(2);
     }
 }
