@@ -18,9 +18,6 @@ public class Sorting {
     }
 
     private void merge(ArrayList<Integer> list, int low, int mid, int high) {
-        
-
-    
     }
 
     void selectionSort(ArrayList<Integer> list)

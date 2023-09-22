@@ -102,7 +102,6 @@ public class DirectedGraph{
                 System.out.print(val.getData()+" ");
             }
             System.out.println();
-
             GraphNode currentNode = stack.pop();
             result.add(currentNode.getData());
 
