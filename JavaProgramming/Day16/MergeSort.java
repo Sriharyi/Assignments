@@ -56,8 +56,9 @@ public class MergeSort{
     
     
     public static void main(String[] args) {
-        int arr[] = new int[]{56,345,23,26,277,34,33,78,26,734,98,33,13};
-        mergeSort(arr);
+        int arr[] = new int[]{1,13,5,7,23,0013};
+        Arrays.sort(arr);
+        // mergeSort(arr);
         // arr = mergeSort(arr);
         System.out.println(Arrays.toString(arr));
     }
