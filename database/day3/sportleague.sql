@@ -47,6 +47,10 @@ CREATE TABLE Match (
     Margin VARCHAR(50),
     PlayerOfTheMatch INT,  -- Foreign key referencing Player
     SeasonID INT  -- Foreign key referencing IPLSeason
+    FOREIGN KEY (HostTeam) REFERENCES Team(TeamName)
+    FOREIGN KEY (OpponentTeam) REFERENCES Team(TeamName)
+    FOREIGN KEY (PlayerOfTheMatch) REFERENCES Player(PlayerId)
+    FOREIGN KEY (SeasonID) REFERENCES IPLSeason(SeasonId)
 );
 
 -- Create the PlayerStats table
