@@ -9,7 +9,7 @@ CREATE TABLE Course (
 INSERT INTO Course (c_number, name, department) VALUES
 (101, 'Introduction to Computer Science', 'Computer Science');
 
--- Create Section table
+-- Create Section table (Weak Entity)
 CREATE TABLE Section (
     s_number INT PRIMARY KEY,
     enrollment_limit INT NOT NULL,
@@ -50,3 +50,4 @@ CREATE TABLE Exam (
 INSERT INTO Exam (exam_id, course_name, section_number, room_number, exam_time) VALUES
 (1, 'Introduction to Computer Science', 1, 101, '2023-12-15 10:00:00'),
 (2, 'Introduction to Computer Science', 2, 201, '2023-12-16 14:00:00');
+
